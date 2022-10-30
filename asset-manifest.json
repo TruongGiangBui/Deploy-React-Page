@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/HD-Book/static/css/main.9325380a.css",
-    "main.js": "/HD-Book/static/js/main.e87b974b.js",
+    "main.js": "/HD-Book/static/js/main.7f4d0077.js",
     "static/media/sidebar-3.jpg": "/HD-Book/static/media/sidebar-3.9992d0cef1150fe9146f.jpg",
     "index.html": "/HD-Book/index.html"
   },
   "entrypoints": [
     "static/css/main.9325380a.css",
-    "static/js/main.e87b974b.js"
+    "static/js/main.7f4d0077.js"
   ]
 }
