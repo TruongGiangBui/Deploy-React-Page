@@ -1,0 +1,71 @@
+.container1 {
+    width: 100%;
+    display: flex;
+}
+
+.main-panel1 {
+    width: 70%;
+    background-color: #0A092D;
+    border-left: 3px solid white;
+    height: 850px;
+    overflow: scroll;
+    overflow-x: visible;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none !important;
+    padding: 50px;
+}
+
+.text1 {
+    color: white;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #ffffff;
+}
+
+.btn-bar {
+    width: 100%;
+    height: 70px;
+    display: flex;
+}
+
+.btn-soluton {
+    color: white;
+    background-color: #2E3856;
+    border-radius: 10px;
+    height: 40px;
+    width: 120px;
+    line-height: 40px;
+    text-align: center;
+    font-size: .9rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-right: 20px;
+}
+.btn-soluton:hover{
+    transform: scale(1.1);
+}
+.btn-soluton:active{
+    transform: scale(.9);
+}
+.active-1 {
+    background-image: linear-gradient(to right, #7583FF, #43cea2);
+}

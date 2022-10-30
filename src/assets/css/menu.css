@@ -1,6 +1,6 @@
 .sidebar{
     width: 30%;
-    height: 800px;
+    height: 850px;
     background-color: #0A092D;
     overflow: scroll;
     -ms-overflow-style: none;  /* IE and Edge */
@@ -12,15 +12,17 @@
 .menulist{
     width: 100%;
 }
+
 .menuItem-wraper{
     width: 100%;
     margin-bottom: 5px;
     margin-top: 2px;
+    animation: mover 1s ease  alternate;
 }
 .menuItem{
     width: 96%;
     margin-left: 2%;
-    background-color: #2E3856;
+    
     border-radius: 10px;
     color: white;
     padding-top: 10px;
@@ -37,6 +39,7 @@
     font-size: 1.3rem;
     padding-left: 5%;
     font-weight: 600;
+    background-color: #2E3856;
 }
 .level-2{
     font-size: 1.2rem;
@@ -44,6 +47,7 @@
     font-weight: 550;
     margin-left: 5%;
     width: 93%;
+    background-color: #334477;
 }
 .level-3{
     font-size: 1.1rem;
@@ -51,6 +55,7 @@
     font-weight: 550;
     margin-left: 10%;
     width: 88%;
+    background-color: #4159a1;
 }
 .level-4{
     font-size: 1.0rem;
@@ -58,12 +63,28 @@
     font-weight: 550;
     margin-left: 15%;
     width: 83%;
+    background-color: #3b5bb9;
 }
-.text1{
-    color: red;
-}
+
 .App {
     font-family: sans-serif;
     text-align: center;
   }
-  
+  .Header-Menu{
+    width: 100%;
+    display: flex;
+  }
+  .logo{
+    width: 50%;
+    height: 100px;
+    background-image: url(./../img/NEW_WATERMARK_001.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .text-header{
+    width: 50%;
+    color: white;
+    font-weight: 700;
+    font-size: 1.4rem;
+    line-height: 100px;
+  }

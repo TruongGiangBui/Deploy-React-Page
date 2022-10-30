@@ -18,7 +18,7 @@
 import React, { Component } from "react";
 import { useState } from "react";
 import { useLocation, NavLink } from "react-router-dom";
-
+import image from 'assets/img/NEW_WATERMARK_001.png'
 import "../../assets/css/menu.css";
 function Exercise({
   Item,
@@ -114,9 +114,6 @@ function MenuItem({
   }
 }
 function Sidebar({
-  color,
-  image,
-  routes,
   dataMenu,
   setSelectedExercise,
   selectedExercise,
@@ -126,7 +123,12 @@ function Sidebar({
     return location.pathname.indexOf(routeName) > -1 ? "active" : "";
   };
   return (
-    <div className="sidebar" data-image={image} data-color={color}>
+    <div className="sidebar" >
+      <div className="Header-Menu">
+        <div className="logo">
+        </div>
+        <div className="text-header">Tặng Hân Du!!!</div>
+      </div>
       <div className="menuList">
         {dataMenu.map((Item) => (
           <MenuItem

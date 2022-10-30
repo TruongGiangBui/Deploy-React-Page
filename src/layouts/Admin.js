@@ -20,64 +20,34 @@ import { Route, Switch } from "react-router-dom";
 
 import AdminNavbar from "components/Navbars/AdminNavbar";
 import Sidebar from "components/Sidebar/Sidebar";
-
+import "../assets/css/main.css";
 import routes from "routes.js";
 import { useState, useEffect, useRef } from "react";
-import sidebarImage from "assets/img/sidebar-3.jpg";
 import axios from "axios";
-import {MathJaxContext,MathJax} from 'better-react-mathjax'
-// import template from '../template.txt';
+import { MathJaxContext, MathJax } from 'better-react-mathjax'
+import MathTex from '../components/MathTex';
 function Admin() {
-  const [image, setImage] = useState(sidebarImage);
   const [color, setColor] = useState("black");
   const [hasImage, setHasImage] = useState(true);
   const [dataMenu, setdataMenu] = useState([]);
   const mainPanel = useRef(null);
   const [selectedExercise, setSelectedExercises] = useState("")
   const [dataSolution, setdataSolution] = useState({});
-//   function template(){
-//     return {__html: `<div>
-//     <script type="text/x-mathjax-config">
-//         MathJax.Hub.Config({
-//           jax: ["input/TeX", "output/HTML-CSS"],
-//           extensions: ["tex2jax.js"],
-//           "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] },
-//           tex2jax: { inlineMath: [ ["$", "$"], ["\\\\(","\\\\)"] ], displayMath: [ ["$$","$$"], ["\\\\[", "\\\\]"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno" },
-//           TeX: { noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } } },
-//           messageStyle: "none"
-//         });
-//         </script>  
-//     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
-//     <div >
-//     ### 2.1a - Balance sheet identity.\n\nBalance sheet identity, or accounting equation, is mathematical formula used to analyze the financial transactions that affects business. Such formula is as follows: \n$$\\begin{aligned} \\text{Assets} &= \\text{Liabilities} +{\\text{Equity}}\\\\[1pt] \\end{aligned}$$\n\nThe amounts recorded by the entity must always balance. Therefore, assets should be equal to the sum of liabilities and equity.</div>
-// </div>`}
-//   }
-//   function load() {
-//     var script = document.createElement("script");
-//     script.type = "text/x-mathjax-config";
-//     script.src = "https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js";   // use the location of your MathJax
-//     script.id = "MathJax-script"
-//     var config = `MathJax.Hub.Config({
-//       jax: ["input/TeX", "output/HTML-CSS"],
-//       extensions: ["tex2jax.js"],
-//       "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] },
-//       tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], displayMath: [ ["$$","$$"], ["\\[", "\\]"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno" },
-//       TeX: { noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } } },
-//       messageStyle: "none"
-//     });`;
-
-//     if (window.opera) {
-//       script.innerHTML = config
-//     } else {
-//       script.text = config
-//     }
-
-//     script.addEventListener('load', function () {
-//       MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-//     })
-
-//     document.getElementsByTagName("head")[0].appendChild(script);
-//   };
+  const [selectedSolution,setselectedSolution]=useState(0)
+  const mathJaxConfig = {
+    loader: { load: ["[tex]/html"] },
+    tex: {
+      packages: { "[+]": ["html"] },
+      inlineMath: [
+        ["$", "$"],
+        ["\\(", "\\)"]
+      ],
+      displayMath: [
+        ["$$", "$$"],
+        ["\\[", "\\]"]
+      ]
+    }
+  };
   useEffect(() => {
     // load()
     axios.get('https://handutran.github.io/data.json').then((datamenu) => {
@@ -94,32 +64,49 @@ function Admin() {
     }
   }, [selectedExercise]);
   function setSelectedExercise(exercise) {
-
     setSelectedExercises(exercise)
-    console.log("selectedExercise", exercise)
+  }
+  function removeUnDisplay(string){
+    if(string.match(/\\\[([0-9]*pt)\]/g)){
+      var match=string.match(/\\\[([0-9]*pt)\]/g)[0];
+      console.log(match)
+      return string.split(match).join("")
+    }else return string
+  }
+  function hanleChangeSolution(index){
+    setselectedSolution(index)
   }
   return (
     <>
       <div className="wrapper">
-        <Sidebar color={color} image={hasImage ? image : ""} routes={routes} dataMenu={dataMenu} selectedExercise={selectedExercise} setSelectedExercise={setSelectedExercise} />
-        <div className="main-panel" ref={mainPanel}>
-          <div className="content">
-          <MathJaxContext>
-            {dataSolution.solutions ? dataSolution.solutions[0].steps.map((el) => {
-              var content = '### 2.1a - Balance sheet identity.\n\nBalance sheet identity, or accounting equation, is mathematical formula used to analyze the financial transactions that affects business. Such formula is as follows: \n$$\\begin{aligned} \\text{Assets} &= \\text{Liabilities} +{\\text{Equity}}\\[1pt] \\end{aligned}$$\n\nThe amounts recorded by the entity must always balance. Therefore, assets should be equal to the sum of liabilities and equity.'
-              return (<div className="text1"
-              //  dangerouslySetInnerHTML={template()}
-               >
-                <MathJax>
-                {el.columns[0].text}
-                </MathJax>
+        <MathJaxContext config={mathJaxConfig} version={3}>
+          <div className="container1">
+          <Sidebar  dataMenu={dataMenu} selectedExercise={selectedExercise} setSelectedExercise={setSelectedExercise} />
+          <div className="main-panel1" ref={mainPanel}>
+            <div className="content">
+              <div className="btn-bar">
+                
+                {dataSolution.solutions ? dataSolution.solutions.map((el,index) => {           
+                return (<div onClick={()=>{hanleChangeSolution(index)}} className={selectedSolution==index?"btn-soluton active-1":"btn-soluton"} >
+                      Lời giải {index+1}
+                  </div>
+                );
+              }) : ""}
               </div>
-              );
-
-            }) : ""}
-            </MathJaxContext>
-          </div>       
-        </div>
+              {dataSolution.solutions ? dataSolution.solutions[selectedSolution].steps.map((el) => {
+                removeUnDisplay(el.columns[0].text)
+                return (<div className="text1"
+                >
+                  <MathJax>
+                    <MathTex>{removeUnDisplay(el.columns[0].text)}</MathTex>
+                  </MathJax>
+                </div>
+                );
+              }) : ""}
+            </div>
+          </div>
+          </div>
+        </MathJaxContext>
       </div>
     </>
   );
