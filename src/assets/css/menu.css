@@ -1,0 +1,69 @@
+.sidebar{
+    width: 30%;
+    height: 800px;
+    background-color: #0A092D;
+    overflow: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none; 
+}
+.sidebar::-webkit-scrollbar {
+    display: none;
+  }
+.menulist{
+    width: 100%;
+}
+.menuItem-wraper{
+    width: 100%;
+    margin-bottom: 5px;
+    margin-top: 2px;
+}
+.menuItem{
+    width: 96%;
+    margin-left: 2%;
+    background-color: #2E3856;
+    border-radius: 10px;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    cursor: pointer;
+}
+.active{
+    border-left: 5px solid #7583FF;
+}
+.active-1{
+    background-image: linear-gradient(to right,#7583FF,#43cea2);;
+}
+.level-1{
+    font-size: 1.3rem;
+    padding-left: 5%;
+    font-weight: 600;
+}
+.level-2{
+    font-size: 1.2rem;
+    padding-left: 5%;
+    font-weight: 550;
+    margin-left: 5%;
+    width: 93%;
+}
+.level-3{
+    font-size: 1.1rem;
+    padding-left: 5%;
+    font-weight: 550;
+    margin-left: 10%;
+    width: 88%;
+}
+.level-4{
+    font-size: 1.0rem;
+    padding-left: 5%;
+    font-weight: 550;
+    margin-left: 15%;
+    width: 83%;
+}
+.text1{
+    color: red;
+}
+.App {
+    font-family: sans-serif;
+    text-align: center;
+  }
+  
