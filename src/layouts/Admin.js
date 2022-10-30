@@ -26,6 +26,7 @@ import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { MathJaxContext, MathJax } from 'better-react-mathjax'
 import MathTex from '../components/MathTex';
+import Latex from "react-latex";
 function Admin() {
   const [color, setColor] = useState("black");
   const [hasImage, setHasImage] = useState(true);
@@ -63,7 +64,16 @@ function Admin() {
       })
     }
   }, [selectedExercise]);
+  function reloadSolution(){
+    if (selectedExercise) {
+      axios.get(`https://handutran.github.io/Dataset/${selectedExercise}.json`).then((res) => {
+        setdataSolution(res.data)
+        // console.log(dataSolution.solutions[0].steps)
+      })
+    }
+  }
   function setSelectedExercise(exercise) {
+    console.log(exercise)
     setSelectedExercises(exercise)
   }
   function removeUnDisplay(string){
@@ -92,14 +102,19 @@ function Admin() {
                   </div>
                 );
               }) : ""}
+                <div onClick={()=>{reloadSolution()}} className={"btn-soluton"} >
+                      Tải lại lời giải
+                  </div>
               </div>
               {dataSolution.solutions ? dataSolution.solutions[selectedSolution].steps.map((el) => {
                 removeUnDisplay(el.columns[0].text)
                 return (<div className="text1"
                 >
+                  
                   <MathJax>
                     <MathTex>{removeUnDisplay(el.columns[0].text)}</MathTex>
                   </MathJax>
+                  
                 </div>
                 );
               }) : ""}
