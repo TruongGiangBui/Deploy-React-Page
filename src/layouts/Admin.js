@@ -54,7 +54,12 @@ function Admin() {
     axios.get('https://handutran.github.io/data.json').then((datamenu) => {
       setdataMenu(datamenu.data)
     })
-
+    if(localStorage.getItem("SelectedExercise")){
+      setSelectedExercises(localStorage.getItem("SelectedExercise"))
+    }
+    if(localStorage.getItem("selectedSolution")){
+      setselectedSolution(localStorage.getItem("selectedSolution"))
+    }
   }, []);
   useEffect(() => {
     if (selectedExercise) {
@@ -65,26 +70,58 @@ function Admin() {
     }
   }, [selectedExercise]);
   function reloadSolution(){
-    if (selectedExercise) {
-      axios.get(`https://handutran.github.io/Dataset/${selectedExercise}.json`).then((res) => {
-        setdataSolution(res.data)
-        // console.log(dataSolution.solutions[0].steps)
-      })
-    }
+    localStorage.setItem("SelectedExercise",selectedExercise)
+    localStorage.setItem("selectedSolution",selectedSolution)
+    window.location.reload()
   }
   function setSelectedExercise(exercise) {
     console.log(exercise)
     setSelectedExercises(exercise)
   }
   function removeUnDisplay(string){
+
+    string=string.split('$$').join("~#~").split("$").join('\\$').split("~#~").join('$$')
     if(string.match(/\\\[([0-9]*pt)\]/g)){
       var match=string.match(/\\\[([0-9]*pt)\]/g)[0];
-      console.log(match)
-      return string.split(match).join("")
-    }else return string
+      // console.log(match)
+      // console.log("string.split(match).join()",string.split(match).join(""))
+      string= string.split(match).join("")
+    }
+    // console.log("string",string)
+    return string
   }
   function hanleChangeSolution(index){
-    setselectedSolution(index)
+    try{
+      if(dataSolution.solutions[index].steps){
+        setselectedSolution(index)
+      }
+    }catch(err){
+      console.log(err)
+    }
+    
+  }
+  function renderSolution(text){
+    // console.log(text)
+    text=removeUnDisplay(text);
+    if(text.match(/\$\$[\s\S]*\$\$/g)){
+      var match=text.match(/\$\$[\s\S]*\$\$/g);
+      console.log(match)
+      return <div>      
+      <MathJax>
+        <MathTex>{text.split(match[0])[0]}</MathTex>
+      </MathJax>
+      <MathJax>
+        {match[0]}
+      </MathJax>
+      <MathJax>
+        <MathTex>{text.split(match[0])[1]}</MathTex>
+      </MathJax>
+      </div>
+    }else{
+      return  <MathJax>
+      <MathTex>{text}</MathTex>
+    </MathJax>
+    }
   }
   return (
     <>
@@ -103,18 +140,21 @@ function Admin() {
                 );
               }) : ""}
                 <div onClick={()=>{reloadSolution()}} className={"btn-soluton"} >
-                      Tải lại lời giải
+                      Tải lại trang
                   </div>
               </div>
               {dataSolution.solutions ? dataSolution.solutions[selectedSolution].steps.map((el) => {
-                removeUnDisplay(el.columns[0].text)
+                
                 return (<div className="text1"
                 >
                   
-                  <MathJax>
+                  {/* <MathJax>
                     <MathTex>{removeUnDisplay(el.columns[0].text)}</MathTex>
-                  </MathJax>
-                  
+                  </MathJax> */}
+                  {/* <MathJax>
+                    {removeUnDisplay(el.columns[0].text)}
+                  </MathJax> */}
+                  {renderSolution(el.columns[0].text)}
                 </div>
                 );
               }) : ""}
