@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.css": "/HD-Book/static/css/main.5b0fa039.css",
-    "main.js": "/HD-Book/static/js/main.a1554231.js",
+    "main.css": "/HD-Book/static/css/main.5621bdea.css",
+    "main.js": "/HD-Book/static/js/main.fabae0f9.js",
     "static/media/NEW_WATERMARK_001.png": "/HD-Book/static/media/NEW_WATERMARK_001.4586749ac9316b56daf5.png",
     "index.html": "/HD-Book/index.html"
   },
   "entrypoints": [
-    "static/css/main.5b0fa039.css",
-    "static/js/main.a1554231.js"
+    "static/css/main.5621bdea.css",
+    "static/js/main.fabae0f9.js"
   ]
 }
