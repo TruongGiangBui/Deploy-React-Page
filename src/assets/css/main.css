@@ -69,3 +69,17 @@
 .active-1 {
     background-image: linear-gradient(to right, #7583FF, #43cea2);
 }
+td{
+    border-color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+th{
+    border-color: white;
+    border: 1px solid white;
+}
+table{
+    align-items: center;
+    margin-left: 30%;
+    border-radius: 5px;
+}
