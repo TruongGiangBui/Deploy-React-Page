@@ -72,6 +72,7 @@
 td{
     border-color: white;
     border: 1px solid white;
+    border-radius: 5px;
 }
 th{
     border-color: white;
@@ -80,4 +81,5 @@ th{
 table{
     align-items: center;
     margin-left: 30%;
+    border-radius: 5px;
 }
