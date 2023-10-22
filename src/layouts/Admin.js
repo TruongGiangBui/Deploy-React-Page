@@ -13,6 +13,7 @@
 =========================================================
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+$ npm run deploy
 
 */
 import React, { Component } from "react";
@@ -83,7 +84,68 @@ function Admin() {
     setSelectedExercises(exercise)
   }
   function removeUnDisplay(string) {
-    
+    console.log('match4 string', string)
+    var match4 = string.match(/\\\\\$([+-]?([0-9]*[.])?[0-9]+)/g)
+    if (match4) {
+      // alert(123)
+      console.log('match4', match4)
+      for (var rec of match4) {
+        let value = rec.split('\\\\$').join('')
+        console.log('match4 split', rec.split('\\\\$').join(''))
+        string = string.split(rec).join(value)
+      }
+    }
+    match4 = string.match(/\\\$([+-]?([0-9]*[.])?[0-9]+)/g)
+    if (match4) {
+      // alert(123)
+      console.log('match4', match4)
+      for (var rec of match4) {
+        let value = rec.split('\\$').join('')
+        console.log('match4 split', rec.split('\\$').join(''))
+        string = string.split(rec).join(value)
+      }
+    }
+    match4 = string.match(/\$([+-]?([0-9]*[.])?[0-9]+)/g)
+    if (match4) {
+      // alert(123)
+      console.log('match4', match4)
+      for (var rec of match4) {
+        let value = rec.split('$').join('')
+        console.log('match4 split', rec.split('$').join(''))
+        string = string.split(rec).join(value)
+      }
+    }
+    var match3 = string.match(/\\\\\$ ([+-]?([0-9]*[.])?[0-9]+)/g)
+    if (match3) {
+      // alert(123)
+      console.log('match3', match3)
+      for (var rec of match3) {
+        let value = rec.split('\\\\\$ ').join('')
+        console.log('match3 split', rec.split('\\\\\$ ').join(''))
+        string = string.split(rec).join(value)
+      }
+    }
+    match3 = string.match(/\\\$ ([+-]?([0-9]*[.])?[0-9]+)/g)
+    if (match3) {
+      // alert(123)
+      console.log('match3', match3)
+      for (var rec of match3) {
+        let value = rec.split('\\\$ ').join('')
+        console.log('match3 split', rec.split('\\\$ ').join(''))
+        string = string.split(rec).join(value)
+      }
+    }
+    match3 = string.match(/\$ ([+-]?([0-9]*[.])?[0-9]+)/g)
+    if (match3) {
+      // alert(123)
+      console.log('match3', match3)
+      for (var rec of match3) {
+        let value = rec.split('\$ ').join('')
+        console.log('match3 split', rec.split('\$ ').join(''))
+        string = string.split(rec).join(value)
+      }
+    }
+
     string = string.split('$$').join("~#~").split("$").join('\\$').split("~#~").join('$$')
     console.log(string)
     if (string.includes('hspace')) {
@@ -93,24 +155,16 @@ function Admin() {
           string = string.split(rec.split('\\\\').join('\\')).join("")
         }
       }
-      var match2 =string.match(/\\hspace\{[0-9]*pt\}/g)
+      var match2 = string.match(/\\hspace\{[0-9]*pt\}/g)
       if (match2) {
         console.log(match2)
         for (var rec of match2) {
           string = string.split(rec.split('\\\\').join('\\')).join("")
         }
       }
-      
-      var match3 =string.match(/\\\\\$ [0-9]+/g)
-      if (match3) {
-        // alert(123)
-        console.log('match3',match3)
-        for (var rec of match3) {
-          let value=rec.split('\\\\\$ ').join('')
-          console.log('match3 split',rec.split('\\\\\$ ').join(''))
-          string = string.split(rec).join(value)
-        }
-      }
+      // console.log('match4 string',string)
+
+
       // string = string.split('\\underline').join('')
       // var match3 =string.match(/\$*\\hspace\{[0-9]*pt\}\$*/g)
       // if (match3) {
@@ -120,7 +174,7 @@ function Admin() {
       // }
 
       console.log(matchs)
-      
+
     }
     if (string.match(/\\\[([0-9]*pt)\]/g)) {
       var matchs = string.match(/\\\[([0-9]*pt)\]/g);
@@ -130,7 +184,7 @@ function Admin() {
         }
       }
     }
-    string=string.split('\\\\$').join('\\$')
+    string = string.split('\\\\$').join('\\$')
     // string=string.split('$$').map((el)=>(el.substring(0,2)=='$$'&&el.substring(el.length-2,el.length)!='$$')?(el+'$$'):el).join('$$')
     console.log(string)
     return string
@@ -145,8 +199,8 @@ function Admin() {
     }
 
   }
-  function loadheart(){
-    window.location.href="https://truonggiangbui.github.io/heart.html";
+  function loadheart() {
+    window.location.href = "https://truonggiangbui.github.io/heart.html";
   }
   function renderSolution(text) {
     // console.log(text)
