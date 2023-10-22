@@ -16,19 +16,23 @@
 
 */
 import React, { Component } from "react";
-import { useState } from "react";
 import { useLocation, NavLink } from "react-router-dom";
 import image from 'assets/img/NEW_WATERMARK_001.png'
 import "../../assets/css/menu.css";
+import { useState, useEffect, useRef } from "react";
 function Exercise({
   Item,
   level,
   visible,
   setSelectedExercise,
   selectedExercise,
+  id,  
+  selectedMenuId
 }) {
   function onClick() {
     setSelectedExercise(Item.id);
+    console.log('selectedId ',id)
+    localStorage.setItem("selectedMenuId", id)
   }
   if (visible) {
     return (
@@ -55,8 +59,10 @@ function MenuItem({
   visible,
   selectedExercise,
   setSelectedExercise,
+  id,
+  selectedMenuId
 }) {
-  const [selected, setSelected] = useState(false);
+  const [selected, setSelected] = useState(false||selectedMenuId.includes(id));
   var title = "";
   if (Item.type == "chapter") {
     title = "Chương ";
@@ -83,6 +89,8 @@ function MenuItem({
               visible={selected}
               selectedExercise={selectedExercise}
               setSelectedExercise={setSelectedExercise}
+              id={id+'~#~'+Item1.id}
+              selectedMenuId={selectedMenuId}
             ></MenuItem>
           ))}
         </div>
@@ -103,6 +111,8 @@ function MenuItem({
                 visible={selected}
                 selectedExercise={selectedExercise}
                 setSelectedExercise={setSelectedExercise}
+                id={id+'~#~'+Exercise1.id}
+                selectedMenuId={selectedMenuId}
               ></Exercise>
             ))
             : ""}
@@ -116,12 +126,18 @@ function MenuItem({
 function Sidebar({
   dataMenu,
   setSelectedExercise,
-  selectedExercise,
+  selectedExercise
+  
 }) {
   const location = useLocation();
   const activeRoute = (routeName) => {
     return location.pathname.indexOf(routeName) > -1 ? "active" : "";
   };
+  const [selectedMenuId, setSelectedMenuId] = useState("")
+  useEffect(() => {
+    setSelectedMenuId(localStorage.getItem("selectedMenuId"))
+    console.log('selectedMenuId',localStorage.getItem("selectedMenuId"))
+  }, []);
   return (
     <div className="sidebar" >
       <div className="Header-Menu">
@@ -137,33 +153,10 @@ function Sidebar({
             visible={true}
             selectedExercise={selectedExercise}
             setSelectedExercise={setSelectedExercise}
+            id={Item.id}
+            selectedMenuId={selectedMenuId}
           ></MenuItem>
         ))}
-        {/* <div className="menuItem-wraper">
-          <div className="menuItem level-1 active">
-            Chemistry: The Central Science
-          </div>
-          <div className="menuItem-wraper">
-            <div className="menuItem level-2">
-              Chemistry: The Central Science
-            </div>
-            <div className="menuItem-wraper">
-              <div className="menuItem level-3 active-1">
-                Chemistry: The Central Science
-              </div>
-              <div className="menuItem-wraper">
-                <div className="menuItem level-4 active-1">
-                  Chemistry: The Central Science
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="menuItem-wraper">
-          <div className="menuItem level-1">
-            Chemistry: The Central Science
-          </div>
-        </div> */}
       </div>
     </div>
   );
