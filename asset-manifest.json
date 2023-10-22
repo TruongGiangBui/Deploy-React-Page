@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/HD-Book/static/css/main.7b65c35c.css",
-    "main.js": "/HD-Book/static/js/main.0e5da6b3.js",
+    "main.js": "/HD-Book/static/js/main.d648695e.js",
     "static/media/NEW_WATERMARK_001.png": "/HD-Book/static/media/NEW_WATERMARK_001.4586749ac9316b56daf5.png",
     "index.html": "/HD-Book/index.html"
   },
   "entrypoints": [
     "static/css/main.7b65c35c.css",
-    "static/js/main.0e5da6b3.js"
+    "static/js/main.d648695e.js"
   ]
 }
