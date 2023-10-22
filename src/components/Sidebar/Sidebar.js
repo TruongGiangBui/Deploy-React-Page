@@ -135,7 +135,7 @@ function Sidebar({
   };
   const [selectedMenuId, setSelectedMenuId] = useState("")
   useEffect(() => {
-    setSelectedMenuId(localStorage.getItem("selectedMenuId"))
+    setSelectedMenuId(localStorage.getItem("selectedMenuId")||'')
     console.log('selectedMenuId',localStorage.getItem("selectedMenuId"))
   }, []);
   return (
