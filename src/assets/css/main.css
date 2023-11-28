@@ -87,16 +87,20 @@ table{
     border-radius: 5px;
 }
 
-@media print {
+
 
     .text1 {
-        color: black;
+        color: black !important;
+        background-color: white !important;
     }
-    .main-panel1 {
+    .content{
+        background-color: white !important;
+        padding: 20px;
+    }
+    /* .main-panel1 {
         width: 100%;
         height: 100%;
-    }
-    .sidebar{
+    } */
+    /* .sidebar{
         display: none;
-    }
-  }
+    } */
