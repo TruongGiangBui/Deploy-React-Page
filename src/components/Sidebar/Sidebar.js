@@ -145,8 +145,9 @@ function Sidebar({
     setTimeout(() => {
       // console.log('element',localStorage.getItem("selectedMenuId"))
       let id = localStorage.getItem("selectedMenuId")
+      console.log('element', id)
       if (id) {
-        id = id.split('~#~')[2]
+        id = id.split('~#~')[id.split('~#~').length-1]
         console.log('element', id)
         const element = document.getElementById(id);
         console.log('element', element)
