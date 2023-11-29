@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5cc1bc7098f4524ac2f4440f9a04c03b",
+    "revision": "35b8c5b4b41769c7dc8518fc6a2016a1",
     "url": "/HD-Book/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/HD-Book/static/css/2.f382e0e2.chunk.css"
   },
   {
-    "revision": "5f23ebf96f2c0c2dc16a",
+    "revision": "ec3010a026cef709cfc3",
     "url": "/HD-Book/static/css/main.147a96da.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/HD-Book/static/js/2.1ce5b219.chunk.js"
   },
   {
-    "revision": "5f23ebf96f2c0c2dc16a",
-    "url": "/HD-Book/static/js/main.b6d201a5.chunk.js"
+    "revision": "ec3010a026cef709cfc3",
+    "url": "/HD-Book/static/js/main.83e3dd19.chunk.js"
   },
   {
     "revision": "9b1307b50d02604c00c9",
