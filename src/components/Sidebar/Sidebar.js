@@ -26,12 +26,12 @@ function Exercise({
   visible,
   setSelectedExercise,
   selectedExercise,
-  id,  
+  id,
   selectedMenuId
 }) {
   function onClick() {
     setSelectedExercise(Item.id);
-    console.log('selectedId ',id)
+    console.log('selectedId ', id)
     localStorage.setItem("selectedMenuId", id)
   }
   if (visible) {
@@ -43,6 +43,7 @@ function Exercise({
               ? `menuItem level-${level} active-1`
               : `menuItem level-${level}`
           }
+          id={Item.id}
           onClick={onClick}
         >
           {`Bài tập ${Item.exerciseName ? Item.exerciseName : ""}`}
@@ -62,7 +63,7 @@ function MenuItem({
   id,
   selectedMenuId
 }) {
-  const [selected, setSelected] = useState(false||selectedMenuId.includes(id));
+  const [selected, setSelected] = useState(false || selectedMenuId.includes(id));
   var title = "";
   if (Item.type == "chapter") {
     title = "Chương ";
@@ -89,7 +90,7 @@ function MenuItem({
               visible={selected}
               selectedExercise={selectedExercise}
               setSelectedExercise={setSelectedExercise}
-              id={id+'~#~'+Item1.id}
+              id={id + '~#~' + Item1.id}
               selectedMenuId={selectedMenuId}
             ></MenuItem>
           ))}
@@ -111,7 +112,7 @@ function MenuItem({
                 visible={selected}
                 selectedExercise={selectedExercise}
                 setSelectedExercise={setSelectedExercise}
-                id={id+'~#~'+Exercise1.id}
+                id={id + '~#~' + Exercise1.id}
                 selectedMenuId={selectedMenuId}
               ></Exercise>
             ))
@@ -127,21 +128,45 @@ function Sidebar({
   dataMenu,
   setSelectedExercise,
   selectedExercise
-  
+
 }) {
   const location = useLocation();
   const activeRoute = (routeName) => {
     return location.pathname.indexOf(routeName) > -1 ? "active" : "";
   };
   const [selectedMenuId, setSelectedMenuId] = useState("")
+  const [firstLoad, setfirstLoad] = useState(true)
   useEffect(() => {
-    setSelectedMenuId(localStorage.getItem("selectedMenuId")||'')
-    console.log('selectedMenuId',localStorage.getItem("selectedMenuId"))
+    setSelectedMenuId(localStorage.getItem("selectedMenuId") || '')
+    console.log('selectedMenuId', localStorage.getItem("selectedMenuId"))
+
+    if(firstLoad){
+      
+    setTimeout(() => {
+      // console.log('element',localStorage.getItem("selectedMenuId"))
+      let id = localStorage.getItem("selectedMenuId")
+      if (id) {
+        id = id.split('~#~')[2]
+        console.log('element', id)
+        const element = document.getElementById(id);
+        console.log('element', element)
+        element.scrollIntoView()
+        setfirstLoad(false)
+      }
+    }, 1000);
+    }
+
+    // document.getElementsByClassName('active-1').scrollIntoView();
   }, []);
+  // useEffect(() => {
+  //   // console.log('getElementById',document.getElementsByClassName('active-1'))
+  //   console.log('getElementById',document.getElementById('14881406'))
+  //   // document.getElementsByClassName('active-1').ge.scrollIntoView();
+  // }, [selectedMenuId]);
   return (
     <div className="sidebar" >
       <div className="Header-Menu">
-        <div className="logo">
+        <div className="logo" id='logo'>
         </div>
         <div className="text-header">Tặng Hân Du!!!</div>
       </div>
